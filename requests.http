@@ -1,0 +1,34 @@
+### Crear una candidatura válida
+POST http://localhost:8080/api/applications
+Content-Type: application/json
+
+{
+  "company": "Google",
+  "position": "Backend Developer",
+  "status": "APPLIED",
+  "appliedDate": "2026-07-01",
+  "source": "LinkedIn"
+}
+
+### Crear una candidatura SIN company (debe dar 400 de validación)
+POST http://localhost:8080/api/applications
+Content-Type: application/json
+
+{
+  "position": "Backend Developer"
+}
+
+### Obtener todas las candidaturas
+GET http://localhost:8080/api/applications
+
+### Obtener una candidatura que no existe (debe dar 404)
+GET http://localhost:8080/api/applications/999
+
+### JSON malformado a propósito (debe dar 400, no 500)
+POST http://localhost:8080/api/applications
+Content-Type: application/json
+
+{
+  "company": "Amazon"
+  "position": "sin coma antes, JSON roto"
+}
