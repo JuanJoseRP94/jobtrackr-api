@@ -32,3 +32,36 @@ Content-Type: application/json
   "company": "Amazon"
   "position": "sin coma antes, JSON roto"
 }
+### Registrar un usuario nuevo
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "juan@example.com",
+  "password": "unaClaveSegura123"
+}
+
+### Iniciar sesión (copia el "token" de la respuesta para usarlo abajo)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "juan@example.com",
+  "password": "unaClaveSegura123"
+}
+
+### Crear una candidatura AUTENTICADO (sustituye TU_TOKEN por el token real)
+POST http://localhost:8080/api/applications
+Content-Type: application/json
+Authorization: Bearer TU_TOKEN
+
+{
+  "company": "Google",
+  "position": "Backend Developer",
+  "status": "APPLIED",
+  "appliedDate": "2026-07-01",
+  "source": "LinkedIn"
+}
+
+### Intentar acceder SIN token (debe dar 401/403)
+GET http://localhost:8080/api/applications

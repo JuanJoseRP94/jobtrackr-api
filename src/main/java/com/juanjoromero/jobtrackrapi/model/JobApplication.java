@@ -30,6 +30,10 @@ public class JobApplication {
     @Enumerated(EnumType.STRING)
     private ApplicationStatus status;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
+
     private LocalDate appliedDate;
 
     private String source; // LinkedIn, InfoJobs, referido, etc.
